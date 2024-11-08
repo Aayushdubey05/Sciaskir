@@ -8,7 +8,7 @@ import BlogPost from './components/BlogPost';
 import AdminDashboard from './components/AdminDashboard';
 import AdminLogin from './components/AdminLogin';
 import PaymentPage from './components/PaymentPage';
-
+import Signup from './components/Signup';
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -17,10 +17,11 @@ function App() {
     };
 
     return (
-        <Router>
+         <Router>
             <Header />
             <Routes>
                 <Route path="/" element={<Hero />} />
+                <Route path="/signup" element={<Signup />} />
                 <Route path="/courses" element={<Courses />} />
                 <Route path="/blog" element={<BlogList />} />
                 <Route path="/blog/:id" element={<BlogPost />} />

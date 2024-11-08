@@ -1,7 +1,10 @@
 import db from "../database/db.js";
 import bcrypt from "bcrypt";
+
+
 export const createAdmin = async (username, password) => {
-    const [result] = await db.execute("INSERT INTO admins (username, password) VALUES (?, ?)", [username, password]);
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const [result] = await db.execute("INSERT INTO admins (username, password) VALUES (?, ?)", [username, hashedPassword]);
     return result;
 };
 
@@ -13,5 +16,3 @@ export const findAdminByUsername = async (username) => {
 export const validatePassword = async (password, hashedPassword) => {
     return await bcrypt.compare(password, hashedPassword);
 };
-
-
